@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Joseph Sanou — Cours d'anglais</title>
+
+<meta name="description" content="Cours d'anglais à domicile. Tous mes liens et le mot du jour.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Joseph Sanou — Cours d'anglais">
+<meta property="og:description" content="Cours particuliers à domicile. Un nouveau mot chaque jour.">
+<meta property="og:image" content="https://joseph.github.io/portrait.jpg">
+<meta property="og:url" content="https://joseph.github.io/">
+<meta name="theme-color" content="#F4EFE3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1C2420" media="(prefers-color-scheme: dark)">
+
+<style>
+
+:root{
+  --papier:      #F4EFE3;
+  --papier-haut: #FBF8F1;
+  --encre:       #1B1F27;
+  --encre-pale:  #6C7180;
+  --rouge:       #C8442F;
+  --surligneur:  #FFE066;
+  --ligne:       #D9D2C2;
+
+  --ombre:         rgba(27,31,39,.09);
+  --ombre-diffuse: rgba(27,31,39,.07);
+  --ombre-forte:   rgba(27,31,39,.15);
+  --grain:         multiply;
+  --grain-force:   .35;
+  --photo:         grayscale(1) contrast(1.08);
+
+  --colonne: 30rem;
+}
+
+@media (prefers-color-scheme: dark){
+  :root{
+    --papier:      #1C2420;
+    --papier-haut: #26302B;
+    --encre:       #ECE6D8;
+    --encre-pale:  #96A199;
+    --rouge:       #EE9070;
+    --surligneur:  #D8C374;
+    --ligne:       rgba(236,230,216,.13);
+
+    --ombre:         rgba(0,0,0,.35);
+    --ombre-diffuse: rgba(0,0,0,.30);
+    --ombre-forte:   rgba(0,0,0,.45);
+    --grain:         soft-light;
+    --grain-force:   .5;
+    --photo:         grayscale(1) contrast(.95) brightness(1.08);
+  }
+
+  .lien:hover .libelle,
+  .lien:focus-visible .libelle{ color:#1C2420; }
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ -webkit-text-size-adjust:100%; }
+
+body{
+  min-height:100svh;
+  color:var(--encre);
+  font-family:Georgia, "Times New Roman", "Noto Serif", serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex; justify-content:center;
+  padding:
+    calc(env(safe-area-inset-top) + 3rem)
+    1.5rem
+    calc(env(safe-area-inset-bottom) + 3rem);
+
+  background-color:var(--papier);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0 1.95rem,
+      var(--ligne) 1.95rem 2rem);
+  background-attachment:fixed;
+}
+
+body::before{
+  content:''; position:fixed; top:0; bottom:0; left:1.15rem;
+  width:1px; background:var(--rouge); opacity:.28; z-index:0;
+}
+
+body::after{
+  content:''; position:fixed; inset:0; z-index:1; pointer-events:none;
+  opacity:var(--grain-force); mix-blend-mode:var(--grain);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='p'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23p)' opacity='.12'/%3E%3C/svg%3E");
+}
+
+.feuille{
+  position:relative; z-index:2;
+  width:100%; max-width:var(--colonne);
+  display:flex; flex-direction:column; gap:2.5rem;
+}
+
+.langues{
+  align-self:flex-end;
+  display:flex; align-items:center; gap:.15rem;
+  padding:.2rem;
+  border:1px solid var(--ligne);
+  border-radius:2px;
+  background:var(--papier-haut);
+}
+.langue{
+  padding:.35rem .7rem;
+  border:none; background:none; cursor:pointer;
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.68rem; font-weight:600; letter-spacing:.1em;
+  color:var(--encre-pale);
+  transition:color .25s, background .25s;
+}
+.langue[aria-pressed="true"]{ background:var(--encre); color:var(--papier); }
+.langue:focus-visible{ outline:2px solid var(--rouge); outline-offset:2px; }
+
+.entete{ display:flex; align-items:center; gap:1.15rem; }
+
+.portrait{
+  flex:none; width:5rem; aspect-ratio:1;
+  border-radius:2px;
+  object-fit:cover;
+  filter:var(--photo);
+  border:1px solid var(--ligne);
+  box-shadow:.35rem .35rem 0 var(--ombre);
+}
+.initiales{
+  flex:none; width:5rem; aspect-ratio:1;
+  display:grid; place-items:center;
+  border:1px solid var(--ligne); border-radius:2px;
+  background:var(--papier-haut);
+  font-size:1.6rem; letter-spacing:.04em; color:var(--encre-pale);
+  box-shadow:.35rem .35rem 0 var(--ombre);
+}
+
+.nom{
+  font-size:clamp(1.6rem,7vw,2.1rem);
+  font-weight:400; line-height:1.05;
+  letter-spacing:-.015em;
+}
+.metier{
+  margin-top:.4rem;
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.62rem; font-weight:600;
+  letter-spacing:.18em; text-transform:uppercase;
+  color:var(--rouge);
+}
+
+.fiche{
+  position:relative;
+  padding:1.5rem 1.4rem 1.35rem;
+  background:var(--papier-haut);
+  border:1px solid var(--ligne);
+  border-radius:2px;
+  transform:rotate(-.55deg);
+  box-shadow:
+    .4rem .5rem 0 var(--ombre),
+    0 1.5rem 2.5rem var(--ombre-diffuse);
+}
+
+.fiche::before{
+  content:''; position:absolute; top:-.7rem; right:1.6rem;
+  width:1.15rem; height:2.2rem;
+  border:2px solid var(--encre-pale); border-radius:.6rem;
+  border-bottom-color:transparent;
+  opacity:.45;
+  transform:rotate(8deg);
+}
+
+.fiche-label{
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.56rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--encre-pale);
+  margin-bottom:.9rem;
+}
+.mot{
+  font-size:clamp(1.7rem,7.5vw,2.2rem);
+  font-weight:400; letter-spacing:-.02em;
+  line-height:1;
+}
+.phonetique{
+  margin-top:.4rem;
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.85rem; color:var(--encre-pale);
+}
+.nature{
+  display:inline-block; margin-top:.85rem;
+  font-style:italic; font-size:.82rem; color:var(--rouge);
+}
+.definition{
+  margin-top:.5rem;
+  font-size:1rem; line-height:1.5;
+}
+.exemple{
+  margin-top:.95rem; padding-top:.9rem;
+  border-top:1px solid var(--ligne);
+  font-style:italic; font-size:.9rem; line-height:1.55;
+  color:var(--encre-pale);
+}
+.exemple::before{ content:'“'; }
+.exemple::after { content:'”'; }
+
+.rubrique{
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.56rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--encre-pale);
+  margin-bottom:.2rem;
+}
+
+.liens{ list-style:none; display:flex; flex-direction:column; }
+
+.lien{
+  position:relative;
+  display:flex; align-items:baseline; gap:.9rem;
+  padding:.95rem .5rem;
+  border-bottom:1px solid var(--ligne);
+  color:var(--encre); text-decoration:none;
+  font-size:1.05rem;
+  transition:padding-left .3s cubic-bezier(.2,.8,.2,1);
+}
+.liens li:last-child .lien{ border-bottom:none; }
+
+.numero{
+  flex:none; width:1.5rem;
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.7rem; color:var(--rouge); opacity:.75;
+}
+.libelle{
+  flex:1;
+
+  background-image:linear-gradient(var(--surligneur), var(--surligneur));
+  background-repeat:no-repeat;
+  background-position:0 88%;
+  background-size:0% .55em;
+  transition:background-size .38s cubic-bezier(.2,.8,.2,1);
+}
+.reseau{
+  flex:none;
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.6rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--encre-pale); opacity:.75;
+}
+
+.lien:hover, .lien:focus-visible{ padding-left:.9rem; outline:none; }
+.lien:hover .libelle, .lien:focus-visible .libelle{ background-size:100% .55em; }
+.lien:focus-visible .numero{ opacity:1; }
+.lien:active{ opacity:.6; }
+
+.reserver{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  padding:1.15rem 1.3rem;
+  background:var(--encre); color:var(--papier);
+  text-decoration:none;
+  border-radius:2px;
+  font-size:1.02rem;
+  box-shadow:.4rem .45rem 0 var(--ombre-forte);
+  transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+}
+.reserver:hover{
+  transform:translate(-2px,-2px);
+  box-shadow:.6rem .65rem 0 var(--ombre-forte);
+}
+.reserver:active{ transform:translate(2px,2px); box-shadow:.2rem .2rem 0 var(--ombre-forte); }
+.reserver .fleche{ font-family:ui-monospace,monospace; opacity:.65; }
+
+.pied{
+  font-family:ui-monospace, "SF Mono", Menlo, monospace;
+  font-size:.56rem; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--encre-pale); opacity:.55; text-align:center;
+}
+
+.apparait{ opacity:0; animation:pose .7s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes pose{
+  from{ opacity:0; transform:translateY(12px); }
+  to  { opacity:1; transform:none; }
+}
+.langues { animation-delay:.05s; }
+.entete  { animation-delay:.14s; }
+.fiche   { animation-delay:.26s; }
+@keyframes pose-fiche{
+  from{ opacity:0; transform:translateY(14px) rotate(-3deg); }
+  to  { opacity:1; transform:translateY(0)    rotate(-.55deg); }
+}
+.fiche.apparait{ animation-name:pose-fiche; }
+.bloc-liens{ animation-delay:.40s; }
+.reserver{ animation-delay:.52s; }
+.pied    { animation-delay:.62s; }
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{ animation:none !important; transition:none !important; }
+  .apparait{ opacity:1; }
+  .fiche{ transform:rotate(-.55deg); }
+  .libelle{ background-size:0 .55em; }
+}
+</style>
+</head>
+
+<body>
+<main class="feuille">
+
+  <div class="langues apparait" role="group" aria-label="Langue">
+    <button class="langue" type="button" data-langue="fr" aria-pressed="true">FR</button>
+    <button class="langue" type="button" data-langue="en" aria-pressed="false">EN</button>
+  </div>
+
+  <header class="entete apparait">
+    <img class="portrait" src="portrait.jpg" alt=""
+         onerror="this.outerHTML='&lt;div class=\'initiales\'&gt;JS&lt;/div&gt;'">
+    <div>
+      <h1 class="nom">Joseph Sanou</h1>
+      <p class="metier" data-fr="Cours d'anglais à domicile" data-en="English tutor · Home lessons">Cours d'anglais à domicile</p>
+    </div>
+  </header>
+
+  <section class="fiche apparait" aria-live="polite">
+    <p class="fiche-label" data-fr="Le mot du jour" data-en="Word of the day">Le mot du jour</p>
+    <p class="mot"        id="mot">—</p>
+    <p class="phonetique" id="phonetique"></p>
+    <p class="nature"     id="nature"></p>
+    <p class="definition" id="definition"></p>
+    <p class="exemple"    id="exemple"></p>
+  </section>
+
+  <section class="bloc-liens apparait">
+    <p class="rubrique" data-fr="Me retrouver" data-en="Find me">Me retrouver</p>
+    <ul class="liens">
+      <li>
+        <a class="lien" href="https://www.facebook.com/share/1P8F4LPXCt/" target="_blank" rel="noopener">
+          <span class="numero">01</span>
+          <span class="libelle" data-fr="La page des cours" data-en="The lessons page">La page des cours</span>
+          <span class="reseau">Facebook</span>
+        </a>
+      </li>
+      <li>
+        <a class="lien" href="https://www.instagram.com/sanoujoseph787" target="_blank" rel="noopener">
+          <span class="numero">02</span>
+          <span class="libelle" data-fr="Le mot du jour en story" data-en="Daily word in stories">Le mot du jour en story</span>
+          <span class="reseau">Instagram</span>
+        </a>
+      </li>
+      <li>
+        <a class="lien" href="https://www.tiktok.com/@english.institute23" target="_blank" rel="noopener">
+          <span class="numero">03</span>
+          <span class="libelle" data-fr="Une minute d'anglais" data-en="One minute of English">Une minute d'anglais</span>
+          <span class="reseau">TikTok</span>
+        </a>
+      </li>
+      <li>
+        <a class="lien" href="https://www.youtube.com/@JosephSanou-p2l" target="_blank" rel="noopener">
+          <span class="numero">04</span>
+          <span class="libelle" data-fr="Les leçons complètes" data-en="Full lessons">Les leçons complètes</span>
+          <span class="reseau">YouTube</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+
+  <a class="reserver apparait" href="https://wa.me/22392594211" target="_blank" rel="noopener">
+    <span data-fr="Réserver un cours sur WhatsApp" data-en="Book a lesson on WhatsApp">Réserver un cours sur WhatsApp</span>
+    <span class="fleche">→</span>
+  </a>
+
+  <p class="pied apparait" data-fr="Bamako · Cours particuliers" data-en="Bamako · Private tutoring">Bamako · Cours particuliers</p>
+</main>
+
+<script>
+
+const MOTS = [
+  { mot:"serendipity", api:"/ˌser.ənˈdɪp.ə.ti/", nature_fr:"nom", nature_en:"noun",
+    def_fr:"Le fait de trouver quelque chose de précieux sans l'avoir cherché.",
+    def_en:"Finding something valuable without looking for it.",
+    ex:"Meeting my best friend was pure serendipity." },
+
+  { mot:"to look forward to", api:"/lʊk ˈfɔː.wəd tuː/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Attendre quelque chose avec impatience et plaisir.",
+    def_en:"To feel happy about something that is going to happen.",
+    ex:"I'm looking forward to our next lesson." },
+
+  { mot:"resilient", api:"/rɪˈzɪl.i.ənt/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Capable de se relever vite après une difficulté.",
+    def_en:"Able to recover quickly after something difficult.",
+    ex:"She is resilient — she never gives up." },
+
+  { mot:"to figure out", api:"/ˈfɪɡ.ər aʊt/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Comprendre après réflexion, arriver à résoudre.",
+    def_en:"To understand or solve something after thinking.",
+    ex:"It took me an hour to figure out the answer." },
+
+  { mot:"grateful", api:"/ˈɡreɪt.fəl/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui ressent et exprime de la reconnaissance.",
+    def_en:"Feeling or showing thanks.",
+    ex:"I'm grateful for everything you taught me." },
+
+  { mot:"overwhelmed", api:"/ˌəʊ.vəˈwelmd/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Submergé, dépassé par trop de choses à la fois.",
+    def_en:"Feeling that there is too much to deal with.",
+    ex:"Don't feel overwhelmed — we'll take it step by step." },
+
+  { mot:"breakthrough", api:"/ˈbreɪk.θruː/", nature_fr:"nom", nature_en:"noun",
+    def_fr:"Une avancée décisive après une longue difficulté.",
+    def_en:"An important discovery or progress after difficulty.",
+    ex:"Last week was a real breakthrough in his English." },
+
+  { mot:"to stand out", api:"/stænd aʊt/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Se démarquer, être remarqué parmi les autres.",
+    def_en:"To be easily noticed because of being different.",
+    ex:"Her accent makes her stand out in a good way." },
+
+  { mot:"eager", api:"/ˈiː.ɡər/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Impatient de faire quelque chose, plein d'envie.",
+    def_en:"Wanting very much to do something.",
+    ex:"My students are eager to speak." },
+
+  { mot:"worthwhile", api:"/ˌwɜːθˈwaɪl/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui vaut le temps et l'effort qu'on y met.",
+    def_en:"Worth the time or effort spent.",
+    ex:"Learning a language is always worthwhile." },
+
+  { mot:"to catch up", api:"/kætʃ ʌp/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Rattraper son retard, ou reprendre des nouvelles.",
+    def_en:"To reach the same level, or to share recent news.",
+    ex:"Let's catch up after the holidays." },
+
+  { mot:"thrilled", api:"/θrɪld/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Extrêmement content, ravi.",
+    def_en:"Extremely pleased and excited.",
+    ex:"I was thrilled to hear about your results." },
+
+  { mot:"ambitious", api:"/æmˈbɪʃ.əs/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui a de grandes ambitions et veut réussir.",
+    def_en:"Having a strong desire to succeed.",
+    ex:"She's very ambitious about her career." },
+
+  { mot:"to get along", api:"/ɡet əˈlɒŋ/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Bien s'entendre avec quelqu'un.",
+    def_en:"To have a good relationship with someone.",
+    ex:"My students get along really well with each other." },
+
+  { mot:"curious", api:"/ˈkjʊə.ri.əs/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui a envie d'apprendre et de découvrir.",
+    def_en:"Eager to learn or know something.",
+    ex:"He's curious about how languages work." },
+
+  { mot:"to put off", api:"/pʊt ɒf/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Reporter, remettre à plus tard.",
+    def_en:"To delay doing something until later.",
+    ex:"Don't put off practicing until tomorrow." },
+
+  { mot:"confident", api:"/ˈkɒn.fɪ.dənt/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui a confiance en ses capacités.",
+    def_en:"Feeling sure about your own abilities.",
+    ex:"You sound much more confident in English now." },
+
+  { mot:"to give up", api:"/ɡɪv ʌp/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Abandonner, arrêter d'essayer.",
+    def_en:"To stop trying to do something.",
+    ex:"Never give up, even when it's difficult." },
+
+  { mot:"achievement", api:"/əˈtʃiːv.mənt/", nature_fr:"nom", nature_en:"noun",
+    def_fr:"Une réussite obtenue grâce à des efforts.",
+    def_en:"Something successfully done through effort.",
+    ex:"Passing the exam was a real achievement." },
+
+  { mot:"to work out", api:"/wɜːk aʊt/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Bien se passer, réussir ; ou faire du sport.",
+    def_en:"To happen successfully, or to exercise.",
+    ex:"Everything worked out fine in the end." },
+
+  { mot:"patience", api:"/ˈpeɪ.ʃəns/", nature_fr:"nom", nature_en:"noun",
+    def_fr:"La capacité à attendre sans s'énerver.",
+    def_en:"The ability to wait calmly without getting upset.",
+    ex:"Learning a language takes a lot of patience." },
+
+  { mot:"to come up with", api:"/kʌm ʌp wɪð/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Trouver une idée ou une solution.",
+    def_en:"To think of an idea or a plan.",
+    ex:"She came up with a great example." },
+
+  { mot:"determined", api:"/dɪˈtɜː.mɪnd/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Fermement décidé à atteindre un objectif.",
+    def_en:"Having firmly decided to achieve something.",
+    ex:"He's determined to speak fluent English by June." },
+
+  { mot:"to run into", api:"/rʌn ˈɪn.tuː/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Rencontrer quelqu'un par hasard.",
+    def_en:"To meet someone unexpectedly.",
+    ex:"I ran into one of my former students yesterday." },
+
+  { mot:"flexible", api:"/ˈflek.sə.bəl/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Capable de s'adapter facilement.",
+    def_en:"Able to adapt easily to change.",
+    ex:"We can be flexible about the lesson time." },
+
+  { mot:"to point out", api:"/pɔɪnt aʊt/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Faire remarquer, signaler quelque chose.",
+    def_en:"To mention or draw attention to something.",
+    ex:"Let me point out a common mistake." },
+
+  { mot:"genuine", api:"/ˈdʒen.ju.ɪn/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Sincère, authentique.",
+    def_en:"Real and sincere.",
+    ex:"He showed genuine interest in learning." },
+
+  { mot:"to take after", api:"/teɪk ˈɑːf.tər/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Ressembler à un membre de sa famille.",
+    def_en:"To resemble a parent or relative.",
+    ex:"She takes after her mother — a natural teacher." },
+
+  { mot:"milestone", api:"/ˈmaɪl.stəʊn/", nature_fr:"nom", nature_en:"noun",
+    def_fr:"Une étape importante dans une évolution.",
+    def_en:"An important stage in progress or development.",
+    ex:"Finishing your first English book is a milestone." },
+
+  { mot:"to keep up with", api:"/kiːp ʌp wɪð/", nature_fr:"verbe à particule", nature_en:"phrasal verb",
+    def_fr:"Suivre le rythme, ne pas prendre de retard.",
+    def_en:"To stay at the same pace as someone or something.",
+    ex:"Try to keep up with your daily vocabulary." },
+
+  { mot:"insightful", api:"/ˈɪn.saɪt.fəl/", nature_fr:"adjectif", nature_en:"adjective",
+    def_fr:"Qui montre une compréhension profonde.",
+    def_en:"Showing deep understanding of something.",
+    ex:"That was a really insightful question." }
+];
+
+function motDuJour(){
+  const d = new Date();
+  const debut = new Date(d.getFullYear(), 0, 0);
+  const jour = Math.floor((d - debut) / 86400000);
+  return MOTS[jour % MOTS.length];
+}
+
+const entree = motDuJour();
+document.getElementById('mot').textContent        = entree.mot;
+document.getElementById('phonetique').textContent = entree.api;
+document.getElementById('exemple').textContent    = entree.ex;
+
+const traduisibles = document.querySelectorAll('[data-fr][data-en]');
+const boutons = document.querySelectorAll('.langue');
+
+function basculer(langue){
+  traduisibles.forEach(el => { el.textContent = el.dataset[langue]; });
+
+  document.getElementById('nature').textContent =
+    langue === 'fr' ? entree.nature_fr : entree.nature_en;
+  document.getElementById('definition').textContent =
+    langue === 'fr' ? entree.def_fr : entree.def_en;
+
+  boutons.forEach(b => b.setAttribute('aria-pressed', b.dataset.langue === langue));
+  document.documentElement.lang = langue;
+}
+
+boutons.forEach(b => b.addEventListener('click', () => basculer(b.dataset.langue)));
+basculer('fr');
+</script>
+</body>
+</html>
